@@ -2,35 +2,52 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Mat Mat Multiply
+
+#define N 2000
+
+
 int main()
 {
+
   int r1, c1, r2, c2, c, d, k, sum = 0;
-  int first[10][10], second[10][10], multiply[10][10];
+  
+  int **first = malloc(N*sizeof(int*));
+  
+  int **second = malloc(N*sizeof(int*));
 
-  printf("Enter number of rows and columns of first matrix\n");
-  scanf("%d%d", &r1, &c1);
-  printf("Enter elements of first matrix\n");
+  int **multiply = malloc(N*sizeof(int*));
 
-  for (c = 0; c < r1; c++)
-    for (d = 0; d < c1; d++)
-      scanf("%d", &first[c][d]);
+  
+ 
+  for(int i=0;i< N;i++){
 
-  printf("Enter number of rows and columns of second matrix\n");
-  scanf("%d%d", &r2, &c2);
+    first[i] = malloc(N*sizeof(int));
+    second[i] = malloc(N*sizeof(int));
+    multiply[i] = malloc(N*sizeof(int));
 
-  if (c1 != r2)
-    printf("The matrices can't be multiplied with each other.\n");
-  else
-  {
-    printf("Enter elements of second matrix\n");
+  }
+  
 
-    for (c = 0; c < r2; c++)
-      for (d = 0; d < c2; d++)
-        scanf("%d", &second[c][d]);
+  
 
-    for (c = 0; c < r1; c++) {
-      for (d = 0; d < c2; d++) {
-        for (k = 0; k < c1      ; k++) {
+
+  printf("Initializing Matrices\n");
+
+  for (c = 0; c < N; c++)
+    for (d = 0; d < N; d++)
+      first[c][d] = 1;
+      //scanf("%d", &first[c][d]);
+
+
+
+    for (c = 0; c < N; c++)
+      for (d = 0; d < N; d++)
+          second[c][d] = 2;
+
+    for (c = 0; c < N; c++) {
+      for (d = 0; d < N; d++) {
+        for (k = 0; k < N; k++) {
           sum = sum + first[c][k]*second[k][d];
         }
 
@@ -38,16 +55,21 @@ int main()
         sum = 0;
       }
     }
-
+/*
     printf("Product of the matrices:\n");
 
-    for (c = 0; c < r1; c++) {
-      for (d = 0; d < c2; d++)
+    for (c = 0; c < N; c++) {
+      for (d = 0; d < N; d++)
         printf("%d\t", multiply[c][d]);
 
       printf("\n");
     }
-  }
+ */
+
+
+//free the memory
+
+printf("Done\n");
 
   return 0;
 }
